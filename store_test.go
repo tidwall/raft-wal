@@ -53,6 +53,8 @@ func TestOpen(t *testing.T) {
 		t.Fatalf("err: %s", err)
 	}
 
+	store.Sync()
+
 	// Close the store so we can open again
 	if err := store.Close(); err != nil {
 		t.Fatalf("err: %s", err)

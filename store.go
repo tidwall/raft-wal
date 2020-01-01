@@ -176,3 +176,11 @@ func (s *LogStore) DeleteRange(min, max uint64) error {
 	}
 	return nil
 }
+
+// Sync performs an fsync on the log. This is not necessary when the
+// durability is set to High.
+func (s *LogStore) Sync() {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+	s.log.Sync()
+}
