@@ -1,3 +1,5 @@
+**This library is not ready for production** 
+
 # raft-wal
 
 This repository provides the raftwal package. 
