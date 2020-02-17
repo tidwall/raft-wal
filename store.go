@@ -8,16 +8,6 @@ import (
 	"github.com/tidwall/wal"
 )
 
-// Level of durability
-type Level int
-
-// Level of durability
-const (
-	Low    Level = -1
-	Medium Level = 0
-	High   Level = 1
-)
-
 // LogStore is a write ahead Raft log
 type LogStore struct {
 	mu    sync.Mutex
@@ -28,14 +18,23 @@ type LogStore struct {
 
 var _ raft.LogStore = &LogStore{}
 
+// Options for Open
+type Options struct {
+	// NoSync disables fsync after writes. This is less durable and puts the
+	// log at risk of data loss when there's a server crash. Default false.
+	NoSync bool
+}
+
 // Open the Raft log
-func Open(path string, durability Level) (*LogStore, error) {
+func Open(path string, opts *Options) (*LogStore, error) {
 	s := new(LogStore)
-	opts := *wal.DefaultOptions
-	opts.Durability = wal.Durability(durability)
+	wopts := *wal.DefaultOptions
+	if opts != nil {
+		wopts.NoSync = opts.NoSync
+	}
 	// opts.LogFormat = wal.JSON
 	var err error
-	s.log, err = wal.Open(path, &opts)
+	s.log, err = wal.Open(path, &wopts)
 	if err != nil {
 		return nil, err
 	}

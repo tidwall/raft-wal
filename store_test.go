@@ -17,7 +17,7 @@ func testLogStore(t testing.TB) *LogStore {
 	// println(fh.Name())
 
 	// Successfully creates and returns a store
-	store, err := Open(fh.Name(), Medium)
+	store, err := Open(fh.Name(), &Options{NoSync: true})
 	if err != nil {
 		t.Fatalf("err: %s", err)
 	}
@@ -48,7 +48,7 @@ func TestOpen(t *testing.T) {
 	defer os.Remove(fh.Name())
 
 	// Successfully creates and returns a store
-	store, err := Open(fh.Name(), High)
+	store, err := Open(fh.Name(), &Options{NoSync: false})
 	if err != nil {
 		t.Fatalf("err: %s", err)
 	}
