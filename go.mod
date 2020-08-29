@@ -1,4 +1,4 @@
-module github.com/tidwall/raft-wal
+module github.com/tidwall/raftwal
 
 go 1.13
 

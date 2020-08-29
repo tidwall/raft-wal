@@ -1,4 +1,4 @@
-# raft-wal
+# raftwal
 
 This repository provides the raftwal package. 
 It uses the [tidwall/wal](https://github.com/tidwall/wal) 
@@ -10,4 +10,4 @@ Josh Baker [@tidwall](http://twitter.com/tidwall)
 
 ## License
 
-raft-wal source code is available under the MIT [License](/LICENSE).
+raftwal source code is available under the MIT [License](/LICENSE).
