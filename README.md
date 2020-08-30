@@ -1,4 +1,6 @@
-# raftwal
+# raft-wal
+
+*project is a work-in-progress and may not be ready for production*
 
 This repository provides the raftwal package. 
 It uses the [tidwall/wal](https://github.com/tidwall/wal) 
